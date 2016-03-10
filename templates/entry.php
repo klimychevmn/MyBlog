@@ -44,6 +44,10 @@
         <div class="comment-header">
             <span class="author"><b><?=$row['author']?></b></span>
             <span class="date"><?=$row['date']?></span>
+            <?php if(IS_ADMIN): ?>
+                <a href="?act=delete-comment&entry_id=<?=$ENTRY['id']?>&id=<?=$row['id']?>"><span class="glyphicon glyphicon-trash ico"></span></a>
+            <?php endif?>
+
         </div>
         <p class="comment-content"><?=$row['content']?></p>
     </div>

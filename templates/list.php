@@ -21,6 +21,9 @@
     .pages {
         margin-bottom: 20px;
     }
+    .ico {
+        padding-left: 5px;
+    }
 </style>
 
 <!-- Отображается лента всех постов из нашей БД -->
@@ -30,7 +33,13 @@
 <?php foreach($records as $row): ?>
 
     <div class="entry">
-        <h3><a href="?act=view-entry&id=<?=$row['id']?>"><?=$row['header']?></a></h3>
+        <h4>
+            <a href="?act=view-entry&id=<?=$row['id']?>"><?=$row['header']?></a>
+            <?php if(IS_ADMIN): ?>
+                <a href="?act=edit-entry&id=<?=$row['id']?>"><span class="glyphicon glyphicon-edit ico"></span></a>
+                <a href="?act=delete-entry&id=<?=$row['id']?>"><span class="glyphicon glyphicon-trash ico"></span></a>
+            <?php endif?>
+        </h4>
         <p class="content"><?=$row['content']?></p>
         <div class="comments">
             <span class="date"><?=$row['author']?></span>

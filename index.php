@@ -24,7 +24,7 @@ switch ($act) {
               LEFT JOIN comment ON entry.id = comment.entry_id
               GROUP BY entry.id
               ORDER BY date DESC
-              LIMIT $offset,$limit");
+              LIMIT $offset, $limit");
         while ($row = $sel->fetch_assoc()) {
             $row['date'] = date('Y-m-d H:i:s', $row['date']);
             if(mb_strlen($row['content']) > 100) {
@@ -36,6 +36,7 @@ switch ($act) {
         }
         require('templates/list.php');
         break;
+
     case 'view-entry':
         if (!isset($_GET['id'])) die("Missing id parameter");
         $id = intval($_GET['id']);
@@ -55,9 +56,9 @@ switch ($act) {
             $row['author'] = htmlspecialchars($row['author']);
             $comments[] = $row;
         }
-
         require('templates/entry.php');
         break;
+
     case 'do-new-entry':
         if(!IS_ADMIN) die('You must be admin to add entry');
         $sel = $mysqli->prepare("INSERT INTO entry(author, date, header, content) VALUES(?, ?, ?, ?)");
@@ -68,8 +69,42 @@ switch ($act) {
         } else {
             die("Cannot insert entry");
         }
-
         break;
+
+    case 'delete-entry':
+        if(!IS_ADMIN) die('You must be admin to delete entry');
+        $id = intval($_GET['id']);
+        $mysqli->query("DELETE FROM entry where id = $id") or die("Cannot delete entry");
+        $mysqli->query("DELETE FROM comment where entry_id = $id") or die("Cannot delete comment");
+        header('Location: .');
+        break;
+
+    case 'delete-comment':
+        if(!IS_ADMIN) die('You must be admin to delete comment');
+        $id = intval($_GET['id']);
+        $mysqli->query("DELETE FROM comment where id = $id") or die("Cannot delete comment");
+        header('Location: ?act=view-entry&id=' . intval($_GET['entry_id']));
+        break;
+
+    case 'edit-entry':
+        if(!IS_ADMIN) die('You must be admin to edit entry');
+        $id = intval($_GET['id']);
+        $row = $mysqli->query("SELECT * FROM entry where id = $id")->fetch_assoc();
+        require('templates/edit-entry.php');
+        break;
+
+    case 'apply-edit-entry':
+        if(!IS_ADMIN) die('You must be admin to edit entry');
+        $sel = $mysqli->prepare("UPDATE entry SET author = ?, header = ?, content = ? WHERE id = ?");
+        $id = intval($_POST['id']);
+        $sel->bind_param('sssi',$_POST['author'], $_POST['header'], $_POST['content'], $id);
+        if($sel->execute()) {
+            header('Location: .');
+        } else {
+            die("Cannot insert entry");
+        }
+        break;
+
     case 'do-new-comment':
         $sel = $mysqli->prepare("INSERT INTO comment(entry_id, author, date, content) VALUES(?, ?, ?, ?)");
         $time = time();
@@ -79,11 +114,12 @@ switch ($act) {
         } else {
             die("Cannot insert entry");
         }
-
         break;
+
     case 'login':
         require('templates/login.php');
         break;
+
     case 'do-login':
         if($_POST['login'] == 'login' && $_POST['password'] == 'password') {
             $_SESSION['IS_ADMIN'] = true;
@@ -92,6 +128,7 @@ switch ($act) {
             header('Location: ?act=login');
         };
         break;
+
     case 'logout':
         unset($_SESSION['IS_ADMIN']);
         header('Location: .');
