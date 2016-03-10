@@ -51,6 +51,18 @@ switch ($act) {
 
         require('templates/entry.php');
         break;
+    case 'do-new-entry':
+        $sel = $mysqli->prepare("INSERT INTO entry(author, date, header, content) VALUES(?, ?, ?, ?)");
+        $sel->bind_param('siss', $_POST['author'], $time, $_POST['header'], $_POST['content']);
+        if($sel->execute()) {
+            header('Location: .');
+        } else {
+            die("Cannot insert entry");
+        }
+
+        break;
+    case 'do-new-comment':
+        break;
     case 'login':
         require('templates/login.php');
         break;

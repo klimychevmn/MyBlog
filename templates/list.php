@@ -51,11 +51,11 @@
     </div>
     <div style="padding-top: 10px">
         <label>Header</label>
-        <input name="header" type="password" />
+        <input name="header"/>
     </div>
     <div style="padding-top: 10px">
         <label>Content</label>
-        <textarea name="text"></textarea>
+        <textarea name="content"></textarea>
     </div>
     <div style="padding-top: 10px">
         <button type="submit" class="btn">Post</button>
