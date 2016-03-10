@@ -55,13 +55,14 @@
 <h2>Add new comment</h2>
 
 <form action="?act=do-new-comment" method="POST" class="well">
+    <input type="hidden" name="entry_id" value="<?=$id?>">
     <div style="padding-top: 10px">
         <label>Author</label>
         <input name="author" type="text"/>
     </div>
     <div style="padding-top: 10px">
         <label>Content</label>
-        <textarea name="text"></textarea>
+        <textarea name="content"></textarea>
     </div>
     <div style="padding-top: 10px">
         <button type="submit" class="btn">Post</button>

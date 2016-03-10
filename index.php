@@ -13,11 +13,18 @@ define('IS_ADMIN', isset($_SESSION['IS_ADMIN']));
 //switch для перекидывания по ссылкам
 switch ($act) {
     case 'list':
+        $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+        $limit = 10;
+        $offset = ($page - 1) * $limit;
         $records = array();
-        $sel = $mysqli->query('SELECT entry.*, count(comment.id) AS comments
+        $pages_result = $mysqli->query("SELECT COUNT(*) AS cnt FROM entry")->fetch_assoc();
+        $pages = $pages_result['cnt'];
+        $sel = $mysqli->query("SELECT entry.*, count(comment.id) AS comments
               FROM entry
               LEFT JOIN comment ON entry.id = comment.entry_id
-              GROUP BY entry.id');
+              GROUP BY entry.id
+              ORDER BY date DESC
+              LIMIT $offset,$limit");
         while ($row = $sel->fetch_assoc()) {
             $row['date'] = date('Y-m-d H:i:s', $row['date']);
             if(mb_strlen($row['content']) > 100) {
@@ -41,7 +48,7 @@ switch ($act) {
         $ENTRY['header'] = htmlspecialchars($ENTRY['header']);
 
         $comments = array();
-        $sel = $mysqli->query("SELECT * FROM comment where entry_id = $id");
+        $sel = $mysqli->query("SELECT * FROM comment where entry_id = $id ORDER BY date ");
         while ($row = $sel->fetch_assoc()) {
             $row['date'] = date('Y-m-d H:i:s', $row['date']);
             $row['content'] = nl2br(htmlspecialchars($row['content']));
@@ -52,7 +59,9 @@ switch ($act) {
         require('templates/entry.php');
         break;
     case 'do-new-entry':
+        if(!IS_ADMIN) die('You must be admin to add entry');
         $sel = $mysqli->prepare("INSERT INTO entry(author, date, header, content) VALUES(?, ?, ?, ?)");
+        $time = time();
         $sel->bind_param('siss', $_POST['author'], $time, $_POST['header'], $_POST['content']);
         if($sel->execute()) {
             header('Location: .');
@@ -62,6 +71,15 @@ switch ($act) {
 
         break;
     case 'do-new-comment':
+        $sel = $mysqli->prepare("INSERT INTO comment(entry_id, author, date, content) VALUES(?, ?, ?, ?)");
+        $time = time();
+        $sel->bind_param('isis',$_POST['entry_id'], $_POST['author'], $time, $_POST['content']);
+        if($sel->execute()) {
+            header('Location: ?act=view-entry&id=' . intval($_POST['entry_id']));
+        } else {
+            die("Cannot insert entry");
+        }
+
         break;
     case 'login':
         require('templates/login.php');

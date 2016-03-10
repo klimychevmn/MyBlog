@@ -18,6 +18,9 @@
     h1 {
         margin-bottom: 10px;
     }
+    .pages {
+        margin-bottom: 20px;
+    }
 </style>
 
 <!-- Отображается лента всех постов из нашей БД -->
@@ -39,6 +42,15 @@
 
 <?php endforeach;?>
 
+<div class="pages">
+    <strong>Pages:</strong>
+<?php for($i = 1; $i <= $pages; $i++): ?>
+    <?php if($i == $page):?><b><?=$i?></b>
+    <?php else: ?><a href="?page=<?=$i?>"><?=$i?></a>
+    <?php endif ?>
+
+<?php endfor?>
+</div>
 
 <?php if(IS_ADMIN): ?>
     <!-- Если АДМИН, то добавим новый пост -->
