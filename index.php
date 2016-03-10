@@ -14,13 +14,17 @@ define('IS_ADMIN', isset($_SESSION['IS_ADMIN']));
 switch ($act) {
     case 'list':
         $records = array();
-        $sel = $mysqli->query('SELECT * FROM entry');
+        $sel = $mysqli->query('SELECT entry.*, count(comment.id) AS comments
+              FROM entry
+              LEFT JOIN comment ON entry.id = comment.entry_id
+              GROUP BY entry.id');
         while ($row = $sel->fetch_assoc()) {
             $row['date'] = date('Y-m-d H:i:s', $row['date']);
             if(mb_strlen($row['content']) > 100) {
                 $row['content'] = mb_substr(strip_tags($row['content']),0,97) . '...';
             }
             $row['content'] = nl2br($row['content']);
+            $row['header'] = htmlspecialchars($row['header']);
             $records[] = $row;
         }
         require('templates/list.php');
@@ -29,12 +33,21 @@ switch ($act) {
         if (!isset($_GET['id'])) die("Missing id parameter");
         $id = intval($_GET['id']);
 
-        $row = $mysqli->query("SELECT * FROM entry where id = $id")->fetch_assoc();
-        if(!$row) die("No such entry!");
+        $ENTRY = $mysqli->query("SELECT * FROM entry where id = $id")->fetch_assoc();
+        if(!$ENTRY) die("No such entry!");
 
-        $row['date'] = date('Y-m-d H:i:s', $row['date']);
-        $row['content'] = nl2br($row['content']);
-        $row['header'] = htmlspecialchars($row['header']);
+        $ENTRY['date'] = date('Y-m-d H:i:s', $ENTRY['date']);
+        $ENTRY['content'] = nl2br($ENTRY['content']);
+        $ENTRY['header'] = htmlspecialchars($ENTRY['header']);
+
+        $comments = array();
+        $sel = $mysqli->query("SELECT * FROM comment where entry_id = $id");
+        while ($row = $sel->fetch_assoc()) {
+            $row['date'] = date('Y-m-d H:i:s', $row['date']);
+            $row['content'] = nl2br(htmlspecialchars($row['content']));
+            $row['author'] = htmlspecialchars($row['author']);
+            $comments[] = $row;
+        }
 
         require('templates/entry.php');
         break;

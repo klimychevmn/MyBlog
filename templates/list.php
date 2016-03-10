@@ -32,17 +32,17 @@
         <div class="comments">
             <span class="date"><?=$row['author']?></span>
             <span class="author"><?=$row['date']?></span>
-            <a href="?act=view-entry&id=<?=$row['id']?>">comments</a>
+            <a href="?act=view-entry&id=<?=$row['id']?>"><?=$row['comments']." "?>comment(s)</a>
         </div>
     </div>
 
 
 <?php endforeach;?>
 
-<!-- Если АДМИН, то добавим новый пост -->
 
 <?php if(IS_ADMIN): ?>
-<h1>Add new entry</h1>
+    <!-- Если АДМИН, то добавим новый пост -->
+    <h1>Add new entry</h1>
 
 <form action="?act=do-new-entry" method="POST" class="well">
     <div style="padding-top: 10px">
