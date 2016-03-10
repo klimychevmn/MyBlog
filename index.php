@@ -18,7 +18,7 @@ switch ($act) {
         $offset = ($page - 1) * $limit;
         $records = array();
         $pages_result = $mysqli->query("SELECT COUNT(*) AS cnt FROM entry")->fetch_assoc();
-        $pages = $pages_result['cnt'];
+        $pages = ceil($pages_result['cnt'] / $limit);
         $sel = $mysqli->query("SELECT entry.*, count(comment.id) AS comments
               FROM entry
               LEFT JOIN comment ON entry.id = comment.entry_id
