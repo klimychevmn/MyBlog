@@ -2,13 +2,13 @@
 
 <!-- Отображается иноформация о посте детальнее -->
 <div class="blog-post">
-    <h2 class="blog-post-title"><?=$ENTRY['header']?></h2>
-    <p><?=$ENTRY['content']?></p>
+    <h2 class="blog-post-title"><?=$articles['title']?></h2>
+    <p><?=$articles['content']?></p>
 
     <div class="blog-post-meta" style="margin-top: 15px">
         <ul class="postinfo-panel">
-            <li class="postinfo-panel__item"><span><?=$ENTRY['date']?></span></li>
-            <li class="postinfo-panel__item"><span><?=$ENTRY['author']?></span></li>
+            <li class="postinfo-panel__item"><span><?=$articles['date']?></span></li>
+            <li class="postinfo-panel__item"><span><?=$articles['author']?></span></li>
             <br>
         </ul>
     </div>
@@ -21,9 +21,6 @@
         <div class="comment-header">
             <span class="author"><b><?=$row['author']?></b></span>
             <span class="date"><?=$row['date']?></span>
-            <?php if(IS_ADMIN): ?>
-                <a href="?act=delete-comment&entry_id=<?=$ENTRY['id']?>&id=<?=$row['id']?>"><span class="glyphicon glyphicon-trash ico"></span></a>
-            <?php endif?>
 
         </div>
         <p class="comment-content"><?=$row['content']?></p>

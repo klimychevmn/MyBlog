@@ -10,19 +10,11 @@
 
         <div class="col-sm-8 blog-main">
 
-            <?php foreach ($records as $row): ?>
+            <?php foreach ($articles as $row): ?>
 
                 <div class="blog-post">
-                    <h2 class="blog-post-title">
-                        <?= $row['header'] ?>
-                        <?php if (IS_ADMIN): ?>
-                            <a href="?act=edit-entry&id=<?= $row['id'] ?>"><span
-                                    class="glyphicon glyphicon-edit ico"></span></a>
-                            <a href="?act=delete-entry&id=<?= $row['id'] ?>"><span
-                                    class="glyphicon glyphicon-trash ico"></span></a>
-                        <?php endif ?>
-                    </h2>
-                    <p><?= $row['content'] ?></p>
+                    <h2 class="blog-post-title"><?= $row['title'] ?></h2>
+                    <p><?= articles_intro($row['content'], 100) ?></p>
                     <a href="?act=view-entry&id=<?= $row['id'] ?>">
                         <button class="btn">Подробнее</button>
                     </a>
@@ -39,30 +31,6 @@
                 </div> <!-- post -->
             <?php endforeach; ?>
 
-            <!-- Страницы -->
-            <?php require('pager.php'); ?>
-            <?php if (IS_ADMIN): ?>
-                <!-- Если АДМИН, то добавим новый пост -->
-                <h1>Add new entry</h1>
-
-                <form action="?act=do-new-entry" method="POST" class="well">
-                    <div style="padding-top: 10px">
-                        <label>Author</label>
-                        <input name="author" type="text"/>
-                    </div>
-                    <div style="padding-top: 10px">
-                        <label>Header</label>
-                        <input name="header"/>
-                    </div>
-                    <div style="padding-top: 10px">
-                        <label>Content</label>
-                        <textarea name="content"></textarea>
-                    </div>
-                    <div style="padding-top: 10px">
-                        <button type="submit" class="btn">Post</button>
-                    </div>
-                </form>
-            <?php endif ?>
 
         </div> <!-- blog-main -->
 
@@ -70,24 +38,6 @@
             <div class="sidebar-module sidebar-module-inset">
                 <h4>Заметки</h4>
                 <p>Здесь можно было бы что-то интересно написать</p>
-            </div>
-            <div class="sidebar-module">
-                <h4>Archives</h4>
-                <h6>Не работает эта штука пока</h6>
-                <ol class="list-unstyled">
-                    <li><a href="#">January 2014</a></li>
-                    <li><a href="#">December 2013</a></li>
-                    <li><a href="#">November 2013</a></li>
-                    <li><a href="#">October 2013</a></li>
-                    <li><a href="#">September 2013</a></li>
-                    <li><a href="#">August 2013</a></li>
-                    <li><a href="#">July 2013</a></li>
-                    <li><a href="#">June 2013</a></li>
-                    <li><a href="#">May 2013</a></li>
-                    <li><a href="#">April 2013</a></li>
-                    <li><a href="#">March 2013</a></li>
-                    <li><a href="#">February 2013</a></li>
-                </ol>
             </div>
             <div class="sidebar-module">
                 <h4>Ссылки</h4>

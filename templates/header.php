@@ -18,11 +18,7 @@
         <nav class="blog-nav">
             <a class="blog-nav-item" href="?">Home</a>
             <a class="blog-nav-item" href="?act=about">About</a>
-            <?php if(IS_ADMIN): ?>
-                <a class="blog-nav-item" style="float: right;" href="?act=logout">Administration (Logout)</a>
-            <?php else: ?>
-                <a class="blog-nav-item" style="float: right;" href="?act=login">Administration (Login)</a>
-            <?php endif?>
+            <a class="blog-nav-item" style="float: right;" href="?act=login">Administration (Login)</a>
         </nav>
     </div>
 </div>
