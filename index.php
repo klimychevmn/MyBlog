@@ -134,5 +134,6 @@ switch ($act) {
         header('Location: .');
         break;
     default:
+        require('templates/404.php');
         die("No such action");
 }

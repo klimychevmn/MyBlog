@@ -1,6 +1,22 @@
 ﻿body {
     padding-top: 50px;
 }
-.starter-template {
-    padding: 15px 15px;
+.postinfo-panel {
+    font-family: Arial,'Helvetica Neue',Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    border: 1px solid #ebeaea;
+    height: 40px;
+    width: auto;
+    position: relative;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.postinfo-panel__item {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 38px;
 }

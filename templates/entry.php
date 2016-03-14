@@ -1,41 +1,18 @@
 <?php require('header.php') ?>
 
-<style type="text/css">
-    .date, .author {
-        margin-right: 10px;
-    }
-    .content{
-        padding-top: 5px;
-        padding-left: 15px;
-    }
-    .comment-header {
-        font-size: 0.8em;
-    }
-    .comment-content {
-        padding-left: 10px;
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        margin-bottom: 10px;
-    }
-
-    .comments {
-        font-size: 0.8em;
-        margin-bottom: 20px;
-    }
-</style>
-
 <!-- Отображается иноформация о посте детальнее -->
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$ENTRY['header']?></h2>
+    <p><?=$ENTRY['content']?></p>
 
-<h2><?=$ENTRY['header']?></h2>
-<p class="content"><?=$ENTRY['content']?></p>
-<div class="comments">
-    <span class="date"><?=$ENTRY['author']?></span>
-    <span class="author"><?=$ENTRY['date']?></span>
-    <a href="?act=view-entry&id=<?=$ENTRY['id']?>">comments</a>
-</div>
-
+    <div class="blog-post-meta" style="margin-top: 15px">
+        <ul class="postinfo-panel">
+            <li class="postinfo-panel__item"><span><?=$ENTRY['date']?></span></li>
+            <li class="postinfo-panel__item"><span><?=$ENTRY['author']?></span></li>
+            <br>
+        </ul>
+    </div>
+</div> <!-- post -->
 
 <h2>Comments: </h2>
 <?php foreach($comments as $row): ?>
