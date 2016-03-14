@@ -41,6 +41,28 @@
 
             <!-- Страницы -->
             <?php require('pager.php'); ?>
+            <?php if (IS_ADMIN): ?>
+                <!-- Если АДМИН, то добавим новый пост -->
+                <h1>Add new entry</h1>
+
+                <form action="?act=do-new-entry" method="POST" class="well">
+                    <div style="padding-top: 10px">
+                        <label>Author</label>
+                        <input name="author" type="text"/>
+                    </div>
+                    <div style="padding-top: 10px">
+                        <label>Header</label>
+                        <input name="header"/>
+                    </div>
+                    <div style="padding-top: 10px">
+                        <label>Content</label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <div style="padding-top: 10px">
+                        <button type="submit" class="btn">Post</button>
+                    </div>
+                </form>
+            <?php endif ?>
 
         </div> <!-- blog-main -->
 
@@ -75,31 +97,6 @@
                 </ol>
             </div>
         </div><!-- /.blog-sidebar-->
-
-
-        <?php if (IS_ADMIN): ?>
-            <!-- Если АДМИН, то добавим новый пост -->
-            <h1>Add new entry</h1>
-
-            <form action="?act=do-new-entry" method="POST" class="well">
-                <div style="padding-top: 10px">
-                    <label>Author</label>
-                    <input name="author" type="text"/>
-                </div>
-                <div style="padding-top: 10px">
-                    <label>Header</label>
-                    <input name="header"/>
-                </div>
-                <div style="padding-top: 10px">
-                    <label>Content</label>
-                    <textarea name="content"></textarea>
-                </div>
-                <div style="padding-top: 10px">
-                    <button type="submit" class="btn">Post</button>
-                </div>
-            </form>
-        <?php endif ?>
-
     </div> <!-- row -->
 
 <?php require('footer.php') ?>
