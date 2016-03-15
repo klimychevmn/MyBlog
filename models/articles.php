@@ -167,6 +167,26 @@ function comment_delete($link, $id) {
 
     return mysqli_affected_rows($link);
 }
+function comment_new($link, $entry_id, $author, $content) {
+
+    //Подготовка
+    $author = trim($author);
+    $entry_id = trim($entry_id);
+    $content = trim($content);
+    $date = date('Y-m-d H:i:s');
+
+    //Запрос
+    $t = "INSERT INTO comment (entry_id, date, author, content) VALUES ('%s', '%s', '%s', '%s')";
+
+    $query = sprintf($t, mysqli_real_escape_string($link, $entry_id), mysqli_real_escape_string($link, $date), mysqli_real_escape_string($link, $author), mysqli_real_escape_string($link, $content));
+
+
+    $result = mysqli_query($link, $query);
+
+    if(!$result) { die(mysqli_error($link)); }
+
+    return true;
+}
 
 //working with form
 function forma_all($link)
@@ -203,4 +223,32 @@ function row_form_delete($link, $id) {
     if(!$result) { die(mysqli_error($link)); }
 
     return mysqli_affected_rows($link);
+}
+function row_form_new($link, $lastname, $firstname, $phone, $email, $content) {
+
+    //Подготовка
+    $lastname = trim($lastname);
+    $firstname = trim($firstname);
+    $phone = (int)$phone;
+    $email = trim($email);
+    $content = trim($content);
+    $date = date('Y-m-d H:i:s');
+
+    //Запрос
+    $t = "INSERT INTO form (date, lastname, firstname, phone, email, content) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')";
+
+    $query = sprintf($t, mysqli_real_escape_string($link,$date),
+                            mysqli_real_escape_string($link, $lastname),
+                            mysqli_real_escape_string($link, $firstname),
+                            mysqli_real_escape_string($link, $phone),
+                            mysqli_real_escape_string($link, $email),
+                            mysqli_real_escape_string($link, $content)
+                    );
+
+
+    $result = mysqli_query($link, $query);
+
+    if(!$result) { die(mysqli_error($link)); }
+
+    return true;
 }

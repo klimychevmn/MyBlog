@@ -34,14 +34,24 @@ switch ($act) {
         break;
 
     case 'do-new-comment':
-        $sel = mysqli_prepare($link,"INSERT INTO comment(entry_id, author, date, content) VALUES(?, ?, ?, ?)");
-        $date = date('Y-m-d H:i:s');
-        $sel->bind_param('isss',$_POST['entry_id'], $_POST['author'], $date, $_POST['content']);
-        if($sel->execute()) {
-            header('Location: ?act=view-entry&id=' . intval($_POST['entry_id']));
+        if(!empty($_POST)){
+            comment_new($link, $_POST['entry_id'], $_POST['author'], $_POST['content']);
+            header("Location: index.php?act=view-entry&id=" . $_POST['entry_id']);
         } else {
             die("Cannot insert entry");
         }
+        break;
+
+    case 'forma':
+        require('templates/form.php');
+        break;
+
+    case 'do-new-forma':
+        if(!empty($_POST)){
+            row_form_new($link, $_POST['lastname'], $_POST['firstname'], $_POST['phone'], $_POST['email'], $_POST['content']);
+            header("Location: index.php");
+        }
+        include('templates/list.php');
         break;
 
     case 'login':

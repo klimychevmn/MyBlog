@@ -17,6 +17,7 @@
     <div class="container">
         <nav class="blog-nav">
             <a class="blog-nav-item" href="?">Home</a>
+            <a class="blog-nav-item" href="?act=forma">Contact us</a>
             <a class="blog-nav-item" href="?act=about">About</a>
             <a class="blog-nav-item" style="float: right;" href="?act=login">Administration (Login)</a>
         </nav>
