@@ -1,9 +1,6 @@
 # MyBlog
 
-<a href="https://www.youtube.com/watch?v=QM3Mtyq3fio">  Создание блога на PHP с использованием простейшего MVC <b>(использованно)</b></a><br>
-<a href="https://geekbrains.ru/courses/65">Личный блог на PHP с нуля <b>(использованно)</b></a><br>
-<a href="https://www.youtube.com/watch?v=TB0XhsWpY-M"> Свой блог на PHP за полтора часа с нуля </a><br>
-<a href="http://webformyself.com/minikurs/cmsfree/index-subscribe.html"> Практика создания системы управления контентом, при помощи объектно-ориентированного программирования на PHP </a><br>
+
 
 <h2>Что было создано: </h2>
 <ol>
