@@ -1,0 +1,103 @@
+
+.note {
+    font-family: 'Cursive', cursive;
+    padding-left: 15px;
+    color: darkcyan;
+    font-size: 18px;
+}
+/* CSS for label */
+.text {
+    display: inline-block;
+    color: dodgerblue;
+    width: 200px;
+    font-family: Arial, Tahoma, sans-serif;
+    margin-bottom: 10px;
+    padding: 4px 30px;
+    font-size: 1.2em;
+    z-index: 1001;
+}
+
+/* CSS for button */
+.btn {
+    color: #dee5f0;
+    margin-left: 180px;
+    margin-bottom: 20px;
+    display: block;
+    cursor: pointer;
+    padding: 5px 11px;
+    font-size: 1.2em;
+    border: solid 1px #224983;
+    border-radius: 5px;
+    background: #1e4c99;
+    background: linear-gradient(top, #2f52b7, #0e3a7d);
+}
+.btn:hover {
+    background: #183d80;
+    background: linear-gradient(top, #284f9d, #0c2b6b);
+}
+
+.btn:active {
+    color: #8c9dc0;
+    background: linear-gradient(top, #0e387d, #2f55b7);
+}
+
+/* CSS for input*/
+.input[type="text"], textarea {
+    width: 300px;
+    height: 40px;
+    margin-top: 7px;
+    font-size: 18px;
+    font-family: Arial, Tahoma, sans-serif;
+    color: #464646;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .49);
+    z-index: 1001;
+    padding-left: 15px;
+    background-clip: padding-box;
+    border-radius: 6px;
+    background-image: linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 100%);
+    box-shadow: inset 0px 2px 0px #d9d9d9;
+    transition: all .1s ease-in-out;
+}
+textarea {
+    width: auto;
+    height: auto;
+}
+
+.input:focus {
+    box-shadow: inset 0px 6px 3px cornflowerblue;
+}
+.input[type="radio"] {
+    margin-top: 11px;
+    width: 22px;
+    height: 22px;
+    z-index: 1001;
+}
+.input_radio {
+    font-family: Arial, Tahoma, sans-serif;
+    color: dodgerblue;
+    font-size: 18px;
+}
+.input[type="radio"]:focus {
+    box-shadow: none;
+}
+
+.errorValid {
+    color: #d9d9d9;
+    position: fixed;
+    margin-left: 550px;
+    margin-top: -44px;
+    text-align: center;
+    display: none;
+    cursor: default;
+    padding: 5px;
+    font-size: 1.2em;
+    border: 2px solid #900000;
+    border-radius: 5px;
+    background: #A80000;
+    background: linear-gradient(top, #A80000, #400000);
+    z-index: 1;
+}
+.show {
+    display: block;
+}
