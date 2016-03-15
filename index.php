@@ -69,6 +69,11 @@ switch ($act) {
     case 'logout':
         header('Location: .');
         break;
+
+    case 'about':
+        require('templates/about.php');
+        break;
+
     default:
         require('templates/404.php');
         break;

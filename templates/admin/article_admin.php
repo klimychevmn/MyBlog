@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label>Содержание</label>
-                <textarea name="content" required class="form-item"><?=$article['content']?></textarea><br>
+                <textarea name="content" required class="form-item" cols="100" rows="20"><?=$article['content']?></textarea><br>
             </div>
 
             <input type="submit" class="btn" value="Сохранить">

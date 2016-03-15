@@ -60,19 +60,24 @@ function articles_get($link, $id_article) {
     return $article;
 }
 
-function articles_new($link, $title, $date, $content) {
+function articles_new($link, $title, $date, $author, $content) {
 
     //Подготовка
     $title = trim($title);
     $content = trim($content);
+    $author = trim($author);
 
     //Проверка
     if($title == "") { return false; }
 
     //Запрос
-    $t = "INSERT INTO articles (title, date, content) VALUES ('%s', '%s', '%s')";
+    $t = "INSERT INTO articles (title, date, author, content) VALUES ('%s', '%s','%s', '%s')";
 
-    $query = sprintf($t, mysqli_real_escape_string($link,$title), mysqli_real_escape_string($link, $date), mysqli_real_escape_string($link, $content));
+    $query = sprintf($t, mysqli_real_escape_string($link,$title),
+                            mysqli_real_escape_string($link, $date),
+                            mysqli_real_escape_string($link, $author),
+                            mysqli_real_escape_string($link, $content)
+                    );
 
 
     $result = mysqli_query($link, $query);

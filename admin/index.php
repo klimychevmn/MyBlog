@@ -11,10 +11,11 @@ switch($action) {
     case 'add':
         $article = [
             'title'=>'',
+            'author'=>'',
             'content'=>''
         ];
         if(!empty($_POST)){
-            articles_new($link, $_POST['title'], $_POST['date'], $_POST['content']);
+            articles_new($link, $_POST['title'], $_POST['date'], $_POST['author'], $_POST['content']);
             header("Location: index.php");
         }
         include('../templates/admin/article_admin.php');

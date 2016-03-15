@@ -63,27 +63,27 @@
         <p class="note"> Все поля обязательны для заполнения! </p>
         <div class="cell">
             <label for="lastname" class="text">Фамилия: </label>
-            <input type="text" class="input" name="lastname" id="lastname" autofocus onkeyup="check_lastname(this.value)">
+            <input type="text" class="input" name="lastname" id="lastname" autofocus onfocus="check_lastname(this.value)" onkeyup="check_lastname(this.value)">
             <span id="lastname_err" class="errorValid"></span>
         </div>
         <div class="cell">
             <label for="firstname" class="text">Имя: </label>
-            <input type="text" class="input" name="firstname" id="firstname" onkeyup="check_firstname(this.value)">
+            <input type="text" class="input" name="firstname" id="firstname" onfocus="check_firstname(this.value)" onkeyup="check_firstname(this.value)">
             <span id="firstname_err" class="errorValid"></span>
         </div>
         <div class="cell">
             <label for="email" class="text">e-mail: </label>
-            <input type="text" class="input" name="email" id="email" onkeyup="check_email(this.value)">
+            <input type="text" class="input" name="email" id="email" onfocus="check_email(this.value)" onkeyup="check_email(this.value)">
             <span id="email_err" class="errorValid"></span>
         </div>
         <div class="cell">
             <label for="phone" class="text">Телефон: </label>
-            <input type="text" class="input" name="phone" id="phone" onkeyup="check_phone(this.value)">
+            <input type="text" class="input" name="phone" id="phone" onfocus="check_phone(this.value)" onkeyup="check_phone(this.value)">
             <span id="phone_err" class="errorValid"></span>
         </div>
         <div class="cell">
             <label for="content" class="text">Сообщение: </label>
-            <textarea class="input" name="content" id="content" cols="30" rows="10" onkeyup="check_content(this.value)"></textarea>
+            <textarea class="input" name="content" id="content" cols="30" rows="10" onfocus="check_content(this.value)" onkeyup="check_content(this.value)"></textarea>
             <span id="content_err" class="errorValid"></span>
         </div>
         <br>
