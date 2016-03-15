@@ -1,5 +1,5 @@
 <?php
-
+// working with articles
 function articles_all($link)
 {
     //Запрос
@@ -23,7 +23,6 @@ function articles_all($link)
 
 function articles_all_with_comments($link)
 {
-
     //Запрос
     $query = "SELECT articles.*, count(comment.id) AS comments
               FROM articles
@@ -130,4 +129,78 @@ function articles_intro($text, $len) {
 
     $intro = (strlen($text)>=$len) ? mb_substr($text, 0, $len)."......" : mb_substr($text, 0, $len);
     return $intro;
+}
+
+// working with comments
+function comments_all($link)
+{
+    //Запрос
+    $query = "SELECT * FROM comment ORDER BY id DESC";
+    $result = mysqli_query($link, $query);
+
+    if(!$result) { die(mysqli_error($link)); }
+
+    //Извлечение из БД
+    $n = mysqli_num_rows($result);
+    $articles = array();
+
+    for($i=0; $i<$n; $i++) {
+        $row = mysqli_fetch_assoc($result);
+        $articles[] = $row;
+    }
+
+    return $articles;
+
+}
+function comment_delete($link, $id) {
+
+    //Подготовка
+    $id = (int)$id;
+    //Проверка
+    if($id == 0) { return false; }
+
+    //Запрос
+    $query = sprintf("DELETE FROM comment WHERE id='%d'", $id);
+    $result = mysqli_query($link, $query);
+
+    if(!$result) { die(mysqli_error($link)); }
+
+    return mysqli_affected_rows($link);
+}
+
+//working with form
+function forma_all($link)
+{
+    //Запрос
+    $query = "SELECT * FROM form ORDER BY id DESC";
+    $result = mysqli_query($link, $query);
+
+    if(!$result) { die(mysqli_error($link)); }
+
+    //Извлечение из БД
+    $n = mysqli_num_rows($result);
+    $articles = array();
+
+    for($i=0; $i<$n; $i++) {
+        $row = mysqli_fetch_assoc($result);
+        $articles[] = $row;
+    }
+
+    return $articles;
+
+}
+function row_form_delete($link, $id) {
+
+    //Подготовка
+    $id = (int)$id;
+    //Проверка
+    if($id == 0) { return false; }
+
+    //Запрос
+    $query = sprintf("DELETE FROM form WHERE id='%d'", $id);
+    $result = mysqli_query($link, $query);
+
+    if(!$result) { die(mysqli_error($link)); }
+
+    return mysqli_affected_rows($link);
 }

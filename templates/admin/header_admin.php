@@ -23,3 +23,9 @@
 </div>
 
 <div class="container">
+    <h1>Привет, Админ!</h1>
+    <ul class="nav nav-tabs">
+        <li><a href="?action=articles" >Все посты</a></li>
+        <li><a href="?action=comments" >Комментарии</a></li>
+        <li><a href="?action=forma" >Форма обратной связи</a></li>
+    </ul>

@@ -1,3 +1,4 @@
+</div> <!--tab panel -->
 </div><!-- /.container -->
 <div class="blog-footer">
     <p>2016 &copy; notHabrahabr</p>

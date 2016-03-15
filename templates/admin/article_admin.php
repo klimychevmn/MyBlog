@@ -1,6 +1,5 @@
 <?php require('header_admin.php') ?>
 
-    <h1>Привет, Админ!</h1>
     <div>
         <form role="form" action="../admin/index.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>" method="post" >
 

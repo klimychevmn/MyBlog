@@ -1,8 +1,8 @@
 <?php require('header_admin.php') ?>
-    <h1>Привет, Админ!</h1>
-    <div>
+<h2>Все посты:</h2>
+    <div class="tab-pane active">
         <a href="index.php?action=add">
-            <button type="button" class="btn btn-primary">Добавить статью</button>
+            <button type="button" class="btn btn-primary" style="margin: 10px">Добавить статью</button>
         </a>
         <table class="table table-hover">
             <tr>
@@ -27,5 +27,4 @@
             <?php endforeach ?>
         </table>
     </div>
-
 <?php require('footer_admin.php') ?>

@@ -6,7 +6,7 @@
 <!-- password: password -->
 
 <form class="form-signin" role="form" action="?act=do-login" method="POST">
-    <input type="text" class="form-control" placeholder="Login" name="login">
+    <input type="text" class="form-control" placeholder="Login" name="login" autofocus>
     <input type="password" class="form-control" placeholder="Password" name="password">
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
